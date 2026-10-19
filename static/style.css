@@ -1,0 +1,102 @@
+/* Web de la práctica EC2 · IES Albarregas · DAM
+   El color principal (--tema) lo decide la variable COLOR_TEMA. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --fondo: #f4f6f8;
+  --tarjeta: #ffffff;
+  --texto: #1f2933;
+  --suave: #5f6b7a;
+  --borde: #dde3ea;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  line-height: 1.5;
+}
+
+.contenedor { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+.cabecera {
+  background: var(--tema);
+  color: #fff;
+  padding: 48px 0 56px;
+}
+.cabecera h1 { margin: 6px 0 8px; font-size: clamp(1.8rem, 4vw, 2.6rem); }
+.etiqueta {
+  display: inline-block;
+  margin: 0;
+  padding: 3px 12px;
+  border: 1px solid rgba(255, 255, 255, .55);
+  border-radius: 999px;
+  font-size: .85rem;
+  letter-spacing: .03em;
+}
+.subtitulo { margin: 0; opacity: .9; }
+
+main { margin-top: -28px; }
+
+.aviso {
+  background: #fff8e1;
+  border-left: 5px solid #f9a825;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+}
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+.tarjeta {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-top: 5px solid var(--tema);
+  border-radius: 10px;
+  padding: 20px 22px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .06);
+}
+.tarjeta h2 { margin: 0 0 4px; font-size: 1.15rem; }
+.explica { margin: 0 0 14px; color: var(--suave); font-size: .9rem; }
+
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 8px 16px;
+  margin: 0;
+}
+dt { color: var(--suave); font-size: .92rem; }
+dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+dd.vacio { color: #b26a00; font-style: italic; font-weight: 500; }
+.mono, code { font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; }
+code { background: #eef1f4; padding: 1px 6px; border-radius: 4px; font-size: .9em; }
+
+.muestra {
+  display: inline-block;
+  width: 12px; height: 12px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--tema);
+  vertical-align: -1px;
+}
+
+.pista { color: var(--suave); text-align: center; margin: 26px 0; }
+
+.pie {
+  border-top: 1px solid var(--borde);
+  color: var(--suave);
+  font-size: .85rem;
+  padding: 18px 0;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  dl { grid-template-columns: 1fr; gap: 2px; }
+  dd { margin-bottom: 8px; }
+}

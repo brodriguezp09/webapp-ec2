@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web en EC2 · {{ cfg.alumno }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>:root { --tema: {{ cfg.color }}; }</style>
+</head>
+<body>
+  <header class="cabecera">
+    <div class="contenedor">
+      <p class="etiqueta">Práctica EC2 · Despliegue {{ cfg.version }}</p>
+      <h1>¡Mi web funciona en la nube!</h1>
+      <p class="subtitulo">Servida por Python (Flask + Gunicorn) desde una instancia de Amazon EC2</p>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    {% if not cfg.configurada %}
+    <div class="aviso">
+      <strong>Esta página todavía no está personalizada.</strong>
+      Es lo normal con el <em>user data</em> v1. En la fase de modificación
+      añadirás tu nombre, un color y la zona horaria de España.
+    </div>
+    {% endif %}
+
+    <section class="tarjetas">
+      <article class="tarjeta">
+        <h2>Configuración del despliegue</h2>
+        <p class="explica">Viene del fichero <code>/etc/webapp.env</code>, que crea el user data a partir de la v2.</p>
+        <dl>
+          <dt>Alumno/a</dt><dd class="{{ '' if cfg.configurada else 'vacio' }}">{{ cfg.alumno }}</dd>
+          <dt>Versión</dt><dd>{{ cfg.version }}</dd>
+          <dt>Color del tema</dt><dd><span class="muestra"></span>{{ cfg.tema }}</dd>
+          <dt>Hora del servidor</dt><dd>{{ cfg.hora_servidor }}</dd>
+          <dt>Zona horaria</dt><dd>{{ cfg.zona_horaria }}</dd>
+        </dl>
+      </article>
+
+      <article class="tarjeta">
+        <h2>¿Qué máquina me está sirviendo?</h2>
+        <p class="explica">Se lee en tiempo real del servicio de metadatos (IMDSv2).</p>
+        <dl>
+          <dt>ID de instancia</dt><dd class="mono">{{ md.instance_id }}</dd>
+          <dt>AMI de origen</dt><dd class="mono">{{ md.ami_id }}</dd>
+          <dt>Tipo</dt><dd class="mono">{{ md.tipo_instancia }}</dd>
+          <dt>Zona de disponibilidad</dt><dd class="mono">{{ md.zona_disponibilidad }}</dd>
+          <dt>IP privada</dt><dd class="mono">{{ md.ip_privada }}</dd>
+          <dt>IP pública</dt><dd class="mono">{{ md.ip_publica }}</dd>
+        </dl>
+      </article>
+    </section>
+
+    <p class="pista">¿Lo quieres en JSON? Prueba <code>/api/info</code> en esta misma dirección.</p>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">IES Albarregas · DAM · Python {{ cfg.python }}</div>
+  </footer>
+</body>
+</html>
