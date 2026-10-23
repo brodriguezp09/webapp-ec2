@@ -6,7 +6,7 @@
 set -euxo pipefail   # para si hay un error y escribe cada orden en el log
 
 # 1) Variables (cambia TU_USUARIO por el usuario de GitHub del repositorio)
-REPO_URL="https://github.com/TU_USUARIO/webapp-ec2.git"
+REPO_URL="https://github.com/brodriguezp09/webapp-ec2.git"
 APP_DIR="/opt/webapp"
 
 # 2) Paquetes del sistema (Amazon Linux 2023 usa dnf)
